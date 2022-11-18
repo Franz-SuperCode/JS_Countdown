@@ -24,7 +24,6 @@ function startMinCountdown() {
         number2 = Number(inputEl.value);
     }
 
-
     //Die Counter Funktion wird jede Sekunde wiederholt
     timeEl.textContent = `${number1}${number2}:${number3}${number4}`;
     timer = setInterval(counter, 1000);
@@ -41,7 +40,6 @@ function pauseMinCountdown() {
 function restartMinCountdown() {
     console.log("Restart");
 
-
     timer = setInterval(counter, 1000);
     //Hole die aktuellen Zahlen und damit neu starten
 }
@@ -51,24 +49,34 @@ function restartMinCountdown() {
 function counter() {
 
     number4--;
-    if (number4 < 0) {
-        number3--
-        number4 = 9;
-    }
+    if (number4 < 0) { number3--; number4 = 9 };
+    if (number3 < 0) { number2--; number3 = 9 };
+    if (number2 < 0) { number1--; number2 = 9 };
 
-    if (number3 < 0) {
-        number2--
-        number3 = 9;
-    }
-
-    if (number2 < 0) {
-        number1--
-        number2 = 9;
-    }
     //Sobald die erste Zahl auf 0 geht, den Timer stoppen
     if (number1 < 0) {
         clearInterval(timer);
+        number1 = 0;
+        number2 = 0;
+        number3 = 0;
+        number4 = 0;
     }
+    // Längere Schreibweise
+    // if (number4 < 0) {
+    //     number3--
+    //     number4 = 9;
+    // }
+
+    // if (number3 < 0) {
+    //     number2--
+    //     number3 = 9;
+    // }
+
+    // if (number2 < 0) {
+    //     number1--
+    //     number2 = 9;
+    // }
+
 
     console.log(`${number1}${number2}:${number3}${number4}`);
     timeEl.textContent = (`${number1}${number2}:${number3}${number4}`);
